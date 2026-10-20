@@ -222,6 +222,23 @@ const catalog = [
       probeCommand: ['amp', '--version'],
     },
   },
+  {
+    id: 'goose',
+    displayName: 'Goose',
+    doctorOrder: 14,
+    runtime: {
+      order: 10,
+      flags: ['-go', '--goose'],
+      description: 'Run as Goose PreToolUse hook',
+      legacyTopLevelFlags: [],
+    },
+    install: {
+      order: 14,
+      flag: '--goose',
+      artifactKind: 'hook config',
+      probeCommand: ['goose', '--version'],
+    },
+  },
 ] as const satisfies readonly IntegrationCatalogEntry[];
 
 export type IntegrationId = (typeof catalog)[number]['id'];

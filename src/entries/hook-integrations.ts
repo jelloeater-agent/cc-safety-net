@@ -6,6 +6,7 @@ import { runCodexHook } from '@/hosts/codex/hook';
 import { runCopilotCliHook } from '@/hosts/copilot-cli/hook';
 import { runCursorHook } from '@/hosts/cursor/hook';
 import { runGeminiCLIHook } from '@/hosts/gemini-cli/hook';
+import { runGooseHook } from '@/hosts/goose/hook';
 import { runGrokBuildHook } from '@/hosts/grok-build/hook';
 import { runHermesAgentHook } from '@/hosts/hermes-agent/hook';
 import { runKimiCodeHook } from '@/hosts/kimi-code/hook';
@@ -27,6 +28,7 @@ const hookRunners = {
   'copilot-cli': runCopilotCliHook,
   cursor: runCursorHook,
   'gemini-cli': runGeminiCLIHook,
+  goose: runGooseHook,
   'grok-build': runGrokBuildHook,
   'hermes-agent': runHermesAgentHook,
   'kimi-code': runKimiCodeHook,

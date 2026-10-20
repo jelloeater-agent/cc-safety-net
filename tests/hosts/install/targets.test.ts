@@ -74,6 +74,12 @@ describe('install targets', () => {
         probeCommand: ['opencode', '--version'],
       },
       { target: 'pi', label: 'Pi', flag: '--pi', probeCommand: ['pi', '--version'] },
+      {
+        target: 'goose',
+        label: 'Goose',
+        flag: '--goose',
+        probeCommand: ['goose', '--version'],
+      },
     ]);
   });
 

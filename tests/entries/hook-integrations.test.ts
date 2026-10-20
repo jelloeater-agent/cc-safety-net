@@ -29,6 +29,8 @@ const HOOK_ARGS: readonly (readonly [readonly string[], string | undefined])[] =
   [['--gemini-cli'], 'gemini-cli'],
   [['--copilot-cli'], 'copilot-cli'],
   [['--grok-build'], 'grok-build'],
+  [['--goose'], 'goose'],
+  [['-go'], 'goose'],
   [['--hermes-agent'], 'hermes-agent'],
   [['--cursor', '--kimi-code'], undefined],
   [['--kimi-code', 'extra'], undefined],
@@ -118,6 +120,14 @@ const HOOK_TABLE = [
     displayName: 'Kimi Code',
     description: 'Run as Kimi Code PreToolUse hook',
     flags: ['-kc', '--kimi-code'],
+    legacyFlags: [],
+    legacyTopLevelFlags: [],
+  },
+  {
+    id: 'goose',
+    displayName: 'Goose',
+    description: 'Run as Goose PreToolUse hook',
+    flags: ['-go', '--goose'],
     legacyFlags: [],
     legacyTopLevelFlags: [],
   },
@@ -218,6 +228,12 @@ describe('the host catalog', () => {
         probeCommand: ['opencode', '--version'],
       },
       { id: 'pi', flag: '--pi', artifactKind: 'package', probeCommand: ['pi', '--version'] },
+      {
+        id: 'goose',
+        flag: '--goose',
+        artifactKind: 'hook config',
+        probeCommand: ['goose', '--version'],
+      },
     ]);
   });
 
@@ -236,6 +252,7 @@ describe('the host catalog', () => {
       'openclaw',
       'opencode',
       'pi',
+      'goose',
     ]);
     expect([...portedDoctorOrder].sort()).toEqual(
       portedInstallMetadata.map((host) => host.id).sort(),
@@ -257,6 +274,7 @@ describe('the host catalog', () => {
       openclaw: 'OpenClaw',
       opencode: 'OpenCode',
       pi: 'Pi',
+      goose: 'Goose',
     });
     for (const id of Object.keys(portedDisplayNames) as IntegrationId[]) {
       expect(portedDisplayName(id), id).toBe(portedDisplayNames[id]);

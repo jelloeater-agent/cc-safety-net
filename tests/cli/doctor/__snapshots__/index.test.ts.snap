@@ -86,6 +86,13 @@ exports[`doctor --json a fresh home reports no configured integration and exits 
       "detected": false,
       "configured": false,
       "inspectionStatus": "not-applicable"
+    },
+    {
+      "platform": "goose",
+      "detected": false,
+      "configured": false,
+      "inspectionStatus": "not-applicable",
+      "configPath": "<root>/home/.agents/plugins/cc-safety-net/hooks/hooks.json"
     }
   ],
   "engineSelfTest": {
@@ -285,7 +292,8 @@ exports[`doctor --json a fresh home reports no configured integration and exits 
       "kimi-code": null,
       "openclaw": null,
       "opencode": null,
-      "pi": null
+      "pi": null,
+      "goose": null
     },
     "codexPluginListOutput": null,
     "ampPluginListOutput": null,
@@ -394,6 +402,13 @@ exports[`doctor --json an installed Cursor hook clears the none-configured findi
       "detected": false,
       "configured": false,
       "inspectionStatus": "not-applicable"
+    },
+    {
+      "platform": "goose",
+      "detected": false,
+      "configured": false,
+      "inspectionStatus": "not-applicable",
+      "configPath": "<root>/home/.agents/plugins/cc-safety-net/hooks/hooks.json"
     }
   ],
   "engineSelfTest": {
@@ -593,7 +608,8 @@ exports[`doctor --json an installed Cursor hook clears the none-configured findi
       "kimi-code": null,
       "openclaw": null,
       "opencode": null,
-      "pi": null
+      "pi": null,
+      "goose": null
     },
     "codexPluginListOutput": null,
     "ampPluginListOutput": null,
@@ -693,6 +709,13 @@ exports[`doctor --json both scopes report their own invalid rule config: invalid
       "detected": false,
       "configured": false,
       "inspectionStatus": "not-applicable"
+    },
+    {
+      "platform": "goose",
+      "detected": false,
+      "configured": false,
+      "inspectionStatus": "not-applicable",
+      "configPath": "<root>/home/.agents/plugins/cc-safety-net/hooks/hooks.json"
     }
   ],
   "engineSelfTest": {
@@ -899,7 +922,8 @@ exports[`doctor --json both scopes report their own invalid rule config: invalid
       "kimi-code": null,
       "openclaw": null,
       "opencode": null,
-      "pi": null
+      "pi": null,
+      "goose": null
     },
     "codexPluginListOutput": null,
     "ampPluginListOutput": null,
@@ -1030,6 +1054,13 @@ exports[`doctor --json a v2 lock and cache are reported once, naming both scopes
       "detected": false,
       "configured": false,
       "inspectionStatus": "not-applicable"
+    },
+    {
+      "platform": "goose",
+      "detected": false,
+      "configured": false,
+      "inspectionStatus": "not-applicable",
+      "configPath": "<root>/home/.agents/plugins/cc-safety-net/hooks/hooks.json"
     }
   ],
   "engineSelfTest": {
@@ -1233,7 +1264,8 @@ exports[`doctor --json a v2 lock and cache are reported once, naming both scopes
       "kimi-code": null,
       "openclaw": null,
       "opencode": null,
-      "pi": null
+      "pi": null,
+      "goose": null
     },
     "codexPluginListOutput": null,
     "ampPluginListOutput": null,
@@ -1348,6 +1380,13 @@ exports[`doctor --json a regular file where the config directory belongs is an u
       "detected": false,
       "configured": false,
       "inspectionStatus": "not-applicable"
+    },
+    {
+      "platform": "goose",
+      "detected": false,
+      "configured": false,
+      "inspectionStatus": "not-applicable",
+      "configPath": "<root>/home/.agents/plugins/cc-safety-net/hooks/hooks.json"
     }
   ],
   "engineSelfTest": {
@@ -1553,7 +1592,8 @@ exports[`doctor --json a regular file where the config directory belongs is an u
       "kimi-code": null,
       "openclaw": null,
       "opencode": null,
-      "pi": null
+      "pi": null,
+      "goose": null
     },
     "codexPluginListOutput": null,
     "ampPluginListOutput": null,
@@ -1684,6 +1724,13 @@ exports[`doctor --json a seeded audit tree is summarised over the denials alone:
       "detected": false,
       "configured": false,
       "inspectionStatus": "not-applicable"
+    },
+    {
+      "platform": "goose",
+      "detected": false,
+      "configured": false,
+      "inspectionStatus": "not-applicable",
+      "configPath": "<root>/home/.agents/plugins/cc-safety-net/hooks/hooks.json"
     }
   ],
   "engineSelfTest": {
@@ -1904,7 +1951,8 @@ exports[`doctor --json a seeded audit tree is summarised over the denials alone:
       "kimi-code": null,
       "openclaw": null,
       "opencode": null,
-      "pi": null
+      "pi": null,
+      "goose": null
     },
     "codexPluginListOutput": null,
     "ampPluginListOutput": null,
@@ -2012,6 +2060,13 @@ exports[`doctor --json an invalid audit scope and a legacy flag are both reporte
       "detected": false,
       "configured": false,
       "inspectionStatus": "not-applicable"
+    },
+    {
+      "platform": "goose",
+      "detected": false,
+      "configured": false,
+      "inspectionStatus": "not-applicable",
+      "configPath": "<root>/home/.agents/plugins/cc-safety-net/hooks/hooks.json"
     }
   ],
   "engineSelfTest": {
@@ -2215,7 +2270,8 @@ exports[`doctor --json an invalid audit scope and a legacy flag are both reporte
       "kimi-code": null,
       "openclaw": null,
       "opencode": null,
-      "pi": null
+      "pi": null,
+      "goose": null
     },
     "codexPluginListOutput": null,
     "ampPluginListOutput": null,

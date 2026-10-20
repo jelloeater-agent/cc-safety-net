@@ -10,6 +10,7 @@ import { runCodexHook as portedCodexHook } from '@/hosts/codex/hook';
 import { runCopilotCliHook as portedCopilotCliHook } from '@/hosts/copilot-cli/hook';
 import { runCursorHook as portedCursorHook } from '@/hosts/cursor/hook';
 import { runGeminiCLIHook as portedGeminiCLIHook } from '@/hosts/gemini-cli/hook';
+import { runGooseHook as portedGooseHook } from '@/hosts/goose/hook';
 import { runGrokBuildHook as portedGrokBuildHook } from '@/hosts/grok-build/hook';
 import { runHermesAgentHook as portedHermesAgentHook } from '@/hosts/hermes-agent/hook';
 import { runKimiCodeHook as portedKimiCodeHook } from '@/hosts/kimi-code/hook';
@@ -471,6 +472,20 @@ const HOST_SPECS: readonly HostSpec[] = [
         stdin: grokPayload(fixture, { workspaceRoot: fixture.project, cwd: fixture.outside }),
       },
     ],
+  },
+  {
+    id: 'goose',
+    flag: '--goose',
+    answersEveryCall: true,
+    ported: portedGooseHook,
+    commandTool: 'developer__shell',
+    build: (payload) => ({
+      event: 'PreToolUse',
+      session_id: SESSION,
+      working_dir: payload.cwd,
+      tool_name: payload.tool,
+      tool_input: payload.args,
+    }),
   },
   {
     id: 'hermes-agent',

@@ -49,6 +49,8 @@ const CONFIGURED: TreeSpec = {
     '{"cc-safety-net":{"enabled":true,"PreToolUse":[{"hooks":[{"type":"command","command":"npx -y cc-safety-net hook --agy-cli","timeout":30}]}]}}',
   '.grok/hooks/cc-safety-net.json':
     '{"hooks":{"PreToolUse":[{"hooks":[{"type":"command","command":"npx -y cc-safety-net hook --grok-build","timeout":30}]}]}}',
+  '.agents/plugins/cc-safety-net/hooks/hooks.json':
+    '{"hooks":{"PreToolUse":[{"hooks":[{"type":"command","command":"npx -y cc-safety-net hook --goose","timeout":30}]}]}}',
   '.kimi-code/config.toml':
     '[[hooks]]\nevent = "PreToolUse"\ncommand = "npx -y cc-safety-net hook --kimi-code"\n',
   '.config/opencode/opencode.json': '{"plugin":["cc-safety-net"]}',
@@ -115,6 +117,7 @@ const PLATFORMS = [
   'openclaw',
   'opencode',
   'pi',
+  'goose',
 ] as const;
 
 afterEach(removeTempRoots);
@@ -128,7 +131,7 @@ test('an untouched home reports every host as not applicable, in doctor order', 
   );
 });
 
-test('a home with every host configured reports all thirteen as verified', async () => {
+test('a home with every host configured reports all fourteen as verified', async () => {
   const outcome = await all(CONFIGURED, {
     ampPluginListOutput: AMP_ACTIVE,
     codexPluginListOutput: codexRow('installed, enabled'),
@@ -161,6 +164,7 @@ test('a home where every host that can be switched off is switched off', async (
     'openclaw detected inactive verified',
     'opencode absent inactive not-applicable',
     'pi detected inactive verified',
+    'goose absent inactive not-applicable',
   ]);
 });
 
@@ -181,6 +185,7 @@ test('a home whose state files cannot be read reports uninspected, never absent'
     'openclaw absent inactive not-applicable',
     'opencode absent inactive not-applicable',
     'pi absent inactive not-inspected',
+    'goose absent inactive not-applicable',
   ]);
 });
 

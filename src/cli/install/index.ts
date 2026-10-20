@@ -34,6 +34,7 @@ import { installCursor, uninstallCursor } from '@/hosts/cursor/install';
 import { detectAllHooks } from '@/hosts/detect/index';
 import type { UpdateInfo } from '@/hosts/doctor-types';
 import { detectGeminiCLI } from '@/hosts/gemini-cli/detect';
+import { installGoose, uninstallGoose } from '@/hosts/goose/install';
 import { installGrokBuild, uninstallGrokBuild } from '@/hosts/grok-build/install';
 import { HERMES_AGENT_PLUGIN_NAME } from '@/hosts/hermes-agent/artifact';
 import { isHermesAgentPluginEnabled } from '@/hosts/hermes-agent/detect';
@@ -83,7 +84,7 @@ import { defaultVersionFetcher, type VersionFetcher } from '@/hosts/system-info'
 
 type ConfigInstallTarget = Extract<
   InstallTarget,
-  'antigravity-cli' | 'grok-build' | 'kimi-code' | 'cursor'
+  'antigravity-cli' | 'grok-build' | 'goose' | 'kimi-code' | 'cursor'
 >;
 
 type ManagedArtifactTarget = Extract<InstallTarget, 'amp' | 'hermes-agent'>;
@@ -151,6 +152,7 @@ const NATIVE_UPDATE_TARGETS = new Set<InstallTarget>([
 const NPX_CACHE_TARGETS = new Set<InstallTarget>([
   'antigravity-cli',
   'cursor',
+  'goose',
   'grok-build',
   'hermes-agent',
   'kimi-code',
@@ -528,6 +530,7 @@ const CONFIG_INSTALLS = {
   cursor: { install: installCursor, uninstall: uninstallCursor },
   'grok-build': { install: installGrokBuild, uninstall: uninstallGrokBuild },
   'kimi-code': { install: installKimiCode, uninstall: uninstallKimiCode },
+  goose: { install: installGoose, uninstall: uninstallGoose },
 } satisfies Record<
   ConfigInstallTarget,
   Record<InstallAction, (environment: Environment) => InstallResult>
@@ -680,6 +683,12 @@ const INSTALL_OPERATIONS = {
       runConfigInstallTarget('install', 'grok-build', environment, updating),
     uninstall: (environment: Environment) =>
       runConfigInstallTarget('uninstall', 'grok-build', environment),
+  },
+  goose: {
+    install: (environment: Environment, updating?: boolean) =>
+      runConfigInstallTarget('install', 'goose', environment, updating),
+    uninstall: (environment: Environment) =>
+      runConfigInstallTarget('uninstall', 'goose', environment),
   },
   'hermes-agent': {
     install: (environment: Environment, updating?: boolean) => {

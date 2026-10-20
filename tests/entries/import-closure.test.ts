@@ -83,6 +83,7 @@ describe('the hook entry closure', () => {
         'hosts/cursor/hook.ts',
         'hosts/gemini-cli/hook.ts',
         'hosts/grok-build/hook.ts',
+        'hosts/goose/hook.ts',
         'hosts/hermes-agent/hook.ts',
         'hosts/kimi-code/hook.ts',
       ].filter((file) => !closure.files.has(file)),

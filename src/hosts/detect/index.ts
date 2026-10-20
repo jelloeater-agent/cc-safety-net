@@ -9,6 +9,7 @@ import { detect as detectCursor } from '@/hosts/cursor/detect';
 import type { DetectContext, HookDetection } from '@/hosts/detect/context';
 import type { HookStatus } from '@/hosts/doctor-types';
 import { detect as detectGeminiCli } from '@/hosts/gemini-cli/detect';
+import { detect as detectGoose } from '@/hosts/goose/detect';
 import { detect as detectGrokBuild } from '@/hosts/grok-build/detect';
 import { detect as detectHermesAgent } from '@/hosts/hermes-agent/detect';
 import { detect as detectKimiCode } from '@/hosts/kimi-code/detect';
@@ -24,6 +25,7 @@ const detectors = {
   'copilot-cli': detectCopilotCli,
   cursor: detectCursor,
   'gemini-cli': detectGeminiCli,
+  goose: detectGoose,
   'grok-build': detectGrokBuild,
   'hermes-agent': detectHermesAgent,
   'kimi-code': detectKimiCode,

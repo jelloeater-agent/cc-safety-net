@@ -2178,6 +2178,17 @@ function matchesCodingCliPath(
             )
           );
         }
+        case 'secret.cli.goose':
+          return matchesFileInRoot(normalized, gooseConfigRoot(cwd, environment, budget), [
+            'secrets.yaml',
+          ]);
+        case 'secret.cli.goose.config':
+          return matchesFileInRoot(normalized, gooseConfigRoot(cwd, environment, budget), [
+            'config.yaml',
+            'permission.yaml',
+            'profiles.yaml',
+            'settings.json',
+          ]);
         default:
           return false;
       }
@@ -2207,6 +2218,17 @@ function codingCliRoot(
   );
   roots.set(key, root);
   return root;
+}
+
+function gooseConfigRoot(cwd: string, environment: EnvironmentContext, budget: Budget): string {
+  const pathRoot = environment.env.get('GOOSE_PATH_ROOT')?.trim();
+  return codingCliRoot(
+    pathRoot ? appendPath(pathRoot, 'config') : undefined,
+    '~/.config/goose',
+    cwd,
+    environment,
+    budget,
+  );
 }
 
 function matchesFileInRoot(normalized: string, root: string, files: readonly string[]): boolean {

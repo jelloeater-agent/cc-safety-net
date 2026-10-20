@@ -11,7 +11,7 @@ import { createTempRoot, removeTempRoots } from '../../helpers/temp-home';
 const flow = async (spec: FlowSpec) => await runFlowDifferential(spec);
 
 const TARGET_FLAGS =
-  '--amp, --agy-cli, --claude-code, --codex, --cursor, --gemini-cli, --copilot-cli, --grok-build, --hermes-agent, --kimi-code, --openclaw, --opencode, --pi';
+  '--amp, --agy-cli, --claude-code, --codex, --cursor, --gemini-cli, --copilot-cli, --grok-build, --hermes-agent, --kimi-code, --openclaw, --opencode, --pi, --goose';
 
 afterEach(removeTempRoots);
 
@@ -50,6 +50,7 @@ const CONFIG_HOSTS = [
   { flag: '--agy-cli', name: 'Antigravity CLI', file: '.gemini/config/hooks.json' },
   { flag: '--grok-build', name: 'Grok Build', file: '.grok/hooks/cc-safety-net.json' },
   { flag: '--kimi-code', name: 'Kimi Code', file: '.kimi-code/config.toml' },
+  { flag: '--goose', name: 'Goose', file: '.agents/plugins/cc-safety-net/hooks/hooks.json' },
 ] as const;
 
 for (const host of CONFIG_HOSTS) {

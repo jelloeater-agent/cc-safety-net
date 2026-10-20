@@ -369,6 +369,23 @@ export const SECRET_CODING_CLI_RULES = [
       '/etc/grok/requirements.toml',
     ],
   },
+  {
+    id: 'secret.cli.goose',
+    category: 'Coding CLI credential',
+    label: 'Goose credentials',
+    paths: ['~/.config/goose/secrets.yaml'],
+  },
+  {
+    id: 'secret.cli.goose.config',
+    category: 'Coding CLI config',
+    label: 'Goose config',
+    paths: [
+      '~/.config/goose/config.yaml',
+      '~/.config/goose/permission.yaml',
+      '~/.config/goose/profiles.yaml',
+      '~/.config/goose/settings.json',
+    ],
+  },
 ] as const satisfies readonly SecretProtectionCodingCliRule[];
 
 const SECRET_VARIANT_PREFIXES = [

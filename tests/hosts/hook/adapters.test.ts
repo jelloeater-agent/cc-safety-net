@@ -37,12 +37,14 @@ const DENY_DOCUMENT_KEYS: Record<string, readonly string[]> = {
   cursor: ['permission', 'user_message', 'agent_message'],
   'antigravity-cli': ['decision', 'reason'],
   'grok-build': ['decision', 'reason'],
+  goose: ['decision', 'reason'],
   'hermes-agent': ['action', 'message'],
 };
 
 const ALLOW_DOCUMENTS: Record<string, object> = {
   cursor: { permission: 'allow' },
   'grok-build': { decision: 'allow' },
+  goose: { decision: 'allow' },
 };
 
 const fixture = createHookFixture('next-hook-adapters-');

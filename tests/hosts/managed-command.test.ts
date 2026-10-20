@@ -11,6 +11,7 @@ describe('the managed hook command', () => {
       cursor: 'npx -y cc-safety-net hook --cursor',
       'gemini-cli': 'npx -y cc-safety-net hook --gemini-cli',
       'grok-build': 'npx -y cc-safety-net hook --grok-build',
+      goose: 'npx -y cc-safety-net hook --goose',
       'hermes-agent': 'npx -y cc-safety-net hook --hermes-agent',
       'kimi-code': 'npx -y cc-safety-net hook --kimi-code',
     });

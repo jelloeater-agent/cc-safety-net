@@ -18,6 +18,7 @@ import {
   FUZZ_SEED,
   fuzzShellSources,
 } from '../../helpers/shell-inputs';
+import { withProcessEnv } from '../../helpers/temp-home';
 
 const PROCESS_STATE_NAMES = [
   'AMP_SETTINGS_FILE',
@@ -28,6 +29,7 @@ const PROCESS_STATE_NAMES = [
   'CURSOR_DATA_DIR',
   'GEMINI_CLI_HOME',
   'GEMINI_CLI_SYSTEM_SETTINGS_PATH',
+  'GOOSE_PATH_ROOT',
   'GROK_HOME',
   'HOME',
   'KIMI_CODE_HOME',
@@ -77,6 +79,8 @@ beforeAll(() => {
     'home/.local/share/amp/secrets.json': '{}',
     'home/.config/opencode/opencode.json': '{}',
     'home/.config/amp/settings.json': '{}',
+    'home/.config/goose/secrets.yaml': 'OPENAI_API_KEY: sk-test',
+    'home/.config/goose/config.yaml': 'goose_provider: anthropic',
     'home/.cc-safety-net/policy.json': '{}',
     'home/.cc-safety-net/id_rsa': 'PRIVATE KEY',
     'codex/auth.json': '{}',
@@ -353,6 +357,16 @@ describe('shell operands against the built-in secret catalog', () => {
         expected: { target: '~/.grok/auth.json', ruleId: 'secret.cli.grok-build' },
       },
       {
+        name: 'Goose file-based secret storage',
+        command: 'cat ~/.config/goose/secrets.yaml',
+        expected: { target: '~/.config/goose/secrets.yaml', ruleId: 'secret.cli.goose' },
+      },
+      {
+        name: 'the Goose config file',
+        command: 'cat ~/.config/goose/config.yaml',
+        expected: { target: '~/.config/goose/config.yaml', ruleId: 'secret.cli.goose.config' },
+      },
+      {
         name: 'Pi credentials',
         command: 'cat ~/.pi/agent/auth.json',
         expected: { target: '~/.pi/agent/auth.json', ruleId: 'secret.cli.pi' },
@@ -363,6 +377,37 @@ describe('shell operands against the built-in secret catalog', () => {
         expected: { target: '~/.kimi-code/server.token', ruleId: 'secret.cli.kimi-code' },
       },
     ]);
+  });
+
+  test('GOOSE_PATH_ROOT relocates the Goose config directory under its config subdirectory', () => {
+    const gooseRoot = shellPath(fixture, 'goose-root');
+    withProcessEnv({ GOOSE_PATH_ROOT: gooseRoot }, () => {
+      const relocated = createProcessEnvironment();
+      expect(
+        findSensitiveTargetInCommand(
+          `cat ${gooseRoot}/config/secrets.yaml`,
+          repo,
+          relocated,
+          undefined,
+          STRICT,
+        ),
+      ).toStrictEqual({
+        target: `${gooseRoot}/config/secrets.yaml`,
+        ruleId: 'secret.cli.goose',
+      });
+      expect(
+        findSensitiveTargetInCommand(
+          `cat ${gooseRoot}/config/config.yaml`,
+          repo,
+          relocated,
+          undefined,
+          STRICT,
+        ),
+      ).toStrictEqual({
+        target: `${gooseRoot}/config/config.yaml`,
+        ruleId: 'secret.cli.goose.config',
+      });
+    });
   });
 });
 

@@ -124,6 +124,22 @@ const adapters = [
       return String(output.reason);
     },
   },
+  {
+    agent: 'goose',
+    flag: '--goose',
+    commandInput: (command: string, cwd: string, _home: string, sessionId: string) => ({
+      event: 'PreToolUse',
+      session_id: sessionId,
+      working_dir: cwd,
+      tool_name: 'developer__shell',
+      tool_input: { command },
+    }),
+    isAllowOutput: (output: Record<string, unknown>) => output.decision === 'allow',
+    denyReason: (output: Record<string, unknown>) => {
+      expect(output.decision).toBe('block');
+      return String(output.reason);
+    },
+  },
 ] as const;
 
 let buildRoot = '';
